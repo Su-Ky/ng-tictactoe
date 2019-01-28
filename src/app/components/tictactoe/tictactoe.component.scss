@@ -1,0 +1,75 @@
+:host {
+  user-select: none;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  mat-card {
+    width: 450px + 48px;
+    max-width: 450px + 48px;
+    box-sizing: border-box;
+
+    mat-card-content > #board {
+      width: 450px;
+      height: 450px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 18vh;
+
+      div {
+        text-align: center;
+        margin: auto;
+        width: 150px;
+        height: 150px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &:nth-child(1) {
+          border-bottom: 2px groove;
+          border-right: 2px groove;
+        }
+
+        &:nth-child(2) {
+          border-bottom: 2px groove;
+          border-right: 2px groove;
+        }
+
+        &:nth-child(3) {
+          border-bottom: 2px groove;
+        }
+
+        &:nth-child(4) {
+          border-bottom: 2px groove;
+          border-right: 2px groove;
+        }
+
+        &:nth-child(5) {
+          border-bottom: 2px groove;
+          border-right: 2px groove;
+        }
+
+        &:nth-child(6) {
+          border-bottom: 2px groove;
+        }
+
+        &:nth-child(7) {
+          border-right: 2px groove;
+        }
+
+        &:nth-child(8) {
+          border-right: 2px groove;
+        }
+      }
+    }
+
+    mat-card-actions > mat-checkbox {
+      margin-left: 32px;
+    }
+  }
+}

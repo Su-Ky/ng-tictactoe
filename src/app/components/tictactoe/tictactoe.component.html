@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title>
+    SCORE: {{ score }}
+  </mat-card-title>
+
+  <mat-card-content>
+    <div id="board">
+      <div (click)="move(i)" *ngFor="let s of board; let i=index; trackBy: trackByFn;">{{ s }}</div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button (click)="reset()" color="accent" mat-raised-button>RESET</button>
+    <button (click)="play()" color="primary" mat-raised-button> PLAY</button>
+    <mat-checkbox [(ngModel)]="playerX">User player X</mat-checkbox>
+    <mat-checkbox [(ngModel)]="firstUser">User first</mat-checkbox>
+  </mat-card-actions>
+</mat-card>

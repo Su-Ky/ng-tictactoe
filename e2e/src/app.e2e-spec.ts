@@ -1,16 +1,14 @@
-import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import {AppPage} from './app.po';
+import {browser, logging} from 'protractor';
 
 describe('workspace-project App', () => {
-  let page: AppPage;
 
   beforeEach(() => {
-    page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to my-app!');
+  it('should display app tictactoe', () => {
+    AppPage.navigateTo();
+    expect(AppPage.getTicTacToe()).toBeTruthy();
   });
 
   afterEach(async () => {
