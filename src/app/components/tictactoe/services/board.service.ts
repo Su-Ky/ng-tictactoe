@@ -27,7 +27,7 @@ export class BoardService {
   private _userPlayerX: boolean;
   private _userFirst: boolean;
   private _level: number;
-  private _board: Board | null = null;
+  private _board: Board;
   private _isPlayed = false;
   get isPlayed(): boolean {
     return this._isPlayed;
@@ -38,16 +38,18 @@ export class BoardService {
     userFirst: boolean = DEFAULT_FIRST_USER,
     level: number = DEFAULT_DEPTH): void {
 
-    let board: Board = new Board((this._userPlayerX && this._userFirst) || (!this._userPlayerX && !this._userFirst));
-    this._userPlayerX = userPlayerX;
-    this._userFirst = userFirst;
-    this._level = level;
-    this._isPlayed = true;
-    if (!this._userFirst) {
-      board = getNextMoveFromUser(board, 4);
-    }
+    if (!this._isPlayed) {
+      let board: Board = new Board((this._userPlayerX && this._userFirst) || (!this._userPlayerX && !this._userFirst));
+      this._userPlayerX = userPlayerX;
+      this._userFirst = userFirst;
+      this._level = level;
+      this._isPlayed = true;
+      if (!this._userFirst) {
+        board = getNextMoveFromUser(board, 4);
+      }
 
-    this.next(board);
+      this.next(board);
+    }
   }
 
   public move(i: number): void {
@@ -81,15 +83,17 @@ export class BoardService {
   }
 
   public stop(): void {
-    delete this._userPlayerX;
-    delete this._userFirst;
-    delete this._level;
+    if (this._isPlayed) {
 
-    this._isPlayed = false;
-    this.next(null);
+      delete this._userPlayerX;
+      delete this._userFirst;
+      delete this._level;
+
+      this._isPlayed = false;
+    }
   }
 
-  private next(board: Board | null): void {
+  private next(board: Board): void {
     this._board = board;
     this.view$.next(new BoardView(boardToString(this._board),
       this._userPlayerX
